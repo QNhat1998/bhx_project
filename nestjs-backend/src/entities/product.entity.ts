@@ -11,6 +11,7 @@ import { Category } from './category.entity'; // Import Category entity
 import { Subcategory } from './subcategory.entity'; // Import Subcategory entity
 import { Comment } from './comment.entity';
 import { OrderDetail } from './order-detail.entity';
+import { ProductSale } from './product-sale.entity';
 
 @Entity('products')
 export class Product {
@@ -20,7 +21,7 @@ export class Product {
   @Column({ type: 'varchar', length: 255 })
   product_name: string;
 
-  @Column({ type: 'varchar', length: 255})
+  @Column({ type: 'varchar', length: 255 })
   price: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
@@ -59,4 +60,7 @@ export class Product {
 
   @OneToMany(() => OrderDetail, (orderDetail) => orderDetail.product)
   order_details: OrderDetail[];
+
+  @OneToMany(() => ProductSale, (sale) => sale.product)
+  sales: ProductSale[];
 }

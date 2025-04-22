@@ -21,6 +21,11 @@ import { Order } from './entities/order.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { CommentsModule } from './modules/comments/comments.module';
 import { Comment } from './entities/comment.entity';
+import { ProductSale } from './entities/product-sale.entity';
+import { ProductSalesModule } from './modules/product-sales/product-sales.module';
+import { PaymentMethodsModule } from './modules/payment-methods/payment-methods.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { Payment } from './entities/payment.entity';
 
 @Module({
   imports: [
@@ -44,6 +49,9 @@ import { Comment } from './entities/comment.entity';
       Product,
       Order,
       Comment,
+      ProductSale,
+      Payment,
+      PaymentMethod,
     ]),
     CategoriesModule,
     BrandsModule,
@@ -54,6 +62,9 @@ import { Comment } from './entities/comment.entity';
     OrdersModule,
     AuthModule,
     CommentsModule,
+    ProductSalesModule,
+    PaymentMethodsModule,
+    PaymentsModule,
   ],
   controllers: [],
   providers: [],

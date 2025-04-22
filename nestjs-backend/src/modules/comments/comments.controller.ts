@@ -20,6 +20,7 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('comments')
+@UseGuards(JwtAuthGuard)
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
@@ -29,14 +30,14 @@ export class CommentsController {
     return this.commentsService.findAll();
   }
 
-  @Public()
   @Get('search')
   search(@Query() filterDto: CommentFilterDto) {
     return this.commentsService.findWithFilters(filterDto);
   }
 
-  @Public()
+  @UseGuards(RolesGuard)
   @Get(':id')
+  @Roles('super_admin', 'admin')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.commentsService.findOne(id);
   }
@@ -46,9 +47,7 @@ export class CommentsController {
     return this.commentsService.create(createCommentDto);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
   @Put(':id')
-  @Roles('super_admin', 'admin')
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateCommentDto: UpdateCommentDto,
@@ -56,9 +55,7 @@ export class CommentsController {
     return this.commentsService.update(id, updateCommentDto);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':id')
-  @Roles('super_admin', 'admin')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.commentsService.remove(id);
   }

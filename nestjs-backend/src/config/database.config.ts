@@ -13,6 +13,7 @@ import { OrderDetail } from 'src/entities/order-detail.entity';
 import { Payment } from 'src/entities/payment.entity';
 import { Comment } from 'src/entities/comment.entity';
 import { RefreshToken } from 'src/entities/refresh-token.entity';
+import { ProductSale } from 'src/entities/product-sale.entity';
 
 export const databaseConfig = (
   configService: ConfigService,
@@ -38,6 +39,7 @@ export const databaseConfig = (
     OrderDetail,
     Comment,
     RefreshToken,
+    ProductSale,
   ],
   synchronize: true,
 });
